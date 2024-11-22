@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link th:href="@{~/styles/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{~/styles/main.css}" rel="stylesheet">
+</head>
+<body>
+	<div class="container" style="max-width: 600px">
+			<h2 class="text-center">Registration</h2>
+			<div th:if="${param.success}">
+				<div class="alert alert-info">You have successfully registered!</div>
+			</div>
+			<form method="post" role="form" 
+			th:action="@{/register}" 
+			th:object="${user}">
+				<div class="mb-3 row align-items-center">
+					<label class="form-label col-sm-3">First Name</label> 
+					<div class="col-sm-9">
+						<input class="form-control" id="firstName" name="firstName" placeholder="Enter first name" th:field="*{firstName}" type="text" />
+						<p th:errors="*{firstName}" class="text-danger" th:if="${#fields.hasErrors('firstName')}"></p>
+					</div>
+				</div>
+
+				<div class="mb-3 row align-items-center">
+					<label class="form-label col-sm-3">Last Name</label> 
+					<div class="col-sm-9">
+						<input class="form-control" id="lastName" name="lastName" placeholder="Enter last name" th:field="*{lastName}" type="text" />
+						<p th:errors="*{lastName}" class="text-danger" th:if="${#fields.hasErrors('lastName')}"></p>
+					</div>
+				</div>
+
+				<div class="mb-3 row align-items-center">
+					<label class="form-label col-sm-3">Email</label>
+					<div class="col-sm-9"> 
+						<input class="form-control" id="email" name="email" placeholder="Enter email address" th:field="*{email}" type="email" />
+						<p th:errors="*{email}" class="text-danger" th:if="${#fields.hasErrors('email')}"></p>
+					</div>
+				</div>
+
+				<div class="mb-3 row align-items-center">
+					<label class="form-label col-sm-3">Password</label> 
+					<div class="col-sm-9">
+						<input class="form-control" id="password" name="password" placeholder="Enter password" th:field="*{password}" type="password" />
+						<p th:errors="*{password}" class="text-danger" th:if="${#fields.hasErrors('password')}"></p>
+					</div>
+				</div>
+				<div class="mb-3 row align-items-center">
+					<div class="col-sm-3"></div>
+					<div class="col-sm-9">
+						<button class="btn btn-primary" type="submit">Register</button>
+						<span>Already registered? <a th:href="@{/login}">Login here</a></span>
+					</div>
+				</div>
+			</form>
+	</div>
+</body>
+</html>
